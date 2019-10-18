@@ -5,7 +5,11 @@ var app = express();
 // function signature is: express. static(root, [options]) 
 // The root argument specifies the root directory from which to serve static assets.
 // double underscore required before dirname
-app.use(express.static(__dirname + '/public')); 
+app.use(express.static(__dirname + '/public'));
+
+app.get('/contactlist', function (req, res) {
+    console.log("receiving get request");
+});
 
 app.listen(3000);
 console.log("server running on port 3000");

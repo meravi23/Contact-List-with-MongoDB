@@ -1,7 +1,8 @@
 
 var app = angular.module("app", []).controller('AppCtrl',
-  function AppCtrl($scope) {
-    // console.log('Hello from controller!');
+  function AppCtrl($scope, $http) {
+    
+    $http.get('/contactlist') // creating route
 
     person1 = {
       name: 'Merav',
