@@ -24,5 +24,12 @@ var app = angular.module("app", []).controller('AppCtrl',
       });
     };
 
+    $scope.remove = function(id) {
+      console.log(id);
+      $http.delete('/contactlist/' + id).then(function(res) {
+        refresh();
+      });
+    }
+
   }
 );
