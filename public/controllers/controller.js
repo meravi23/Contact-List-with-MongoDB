@@ -9,5 +9,12 @@ var app = angular.module("app", []).controller('AppCtrl',
       console.log("I received the data from the server");
       $scope.contacts = response.data;
     });
+
+    $scope.addContact = function(){
+      console.log($scope.contact);
+      // sending the input data to the server:
+      $http.post('contactlist', $scope.contact);
+    }
+
   }
 );
