@@ -3,6 +3,7 @@ const app = express();
 const mongojs = require('mongojs');
 const db = mongojs('contactlist', ['contactlist']);
 const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 3000;
 
 // static is used to serve static files (i.e. not changing dynamically) such as images, CSS files, and JavaScript files
 // function signature is: express. static(root, [options]) 
@@ -11,7 +12,7 @@ const bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
-app.listen(3000);
+app.listen(PORT);
 console.log("server running on port 3000");
 
 app.get('/contactlist', function (req, res) {
