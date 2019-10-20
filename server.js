@@ -11,6 +11,9 @@ const bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 
+app.listen(3000);
+console.log("server running on port 3000");
+
 app.get('/contactlist', function (req, res) {
     console.log("I received a GET request");
     
@@ -35,5 +38,22 @@ app.delete('/contactlist/:id', function(req, res) {
     })
 });
 
-app.listen(3000);
-console.log("server running on port 3000");
+app.get('/contactlist/:id', function(req, res) {
+    let id = req.params.id;
+    console.log(id);
+    db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function(err, doc) {
+        res.json(doc);
+    });
+});
+
+app.put('/contactlist/:id', function(req, res) {
+    let id = req.params.id;
+    console.log(req.body.name);
+    db.contactlist.findAndModify({query: {_id: mongojs.ObjectId(id)},
+        update: {$set: {name: req.body.name, email: req.body.email,
+             phone: req.body.phone}},
+        new: true}, function(err, doc) {
+            res.json(doc);
+    });
+});
+

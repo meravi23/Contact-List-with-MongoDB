@@ -18,7 +18,7 @@ var app = angular.module("app", []).controller('AppCtrl',
     $scope.addContact = function () {
       console.log($scope.contact);
       // sending the input data to the server:
-      $http.post('contactlist', $scope.contact).then(function (res) {
+      $http.post('contactlist', $scope.contact).then(function(res) {
         console.log(res);
         refresh();
       });
@@ -31,5 +31,21 @@ var app = angular.module("app", []).controller('AppCtrl',
       });
     }
 
+    $scope.edit = function(id) {
+      console.log(id);
+      $http.get('/contactlist/' + id).then(function(res) {
+        $scope.contact = res.data;
+      });
+    };
+
+    $scope.update = function() {
+      console.log($scope.contact._id);
+      // sending $scope.contact to the server (second argument):
+      $http.put('/contactlist/' + $scope.contact._id, $scope.contact)
+      .then(function(res){
+        refresh();
+      });
+    };
+    
   }
 );
