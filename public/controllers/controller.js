@@ -19,7 +19,7 @@ var app = angular.module("app", []).controller('AppCtrl',
       $scope.contact._id = null; // this way whenever a new contact is added it is always assigned a new id by the database
       console.log($scope.contact);
       // sending the input data to the server:
-      $http.post('contactlist', $scope.contact).then(function(res) {
+      $http.post('/contactlist', $scope.contact).then(function(res) {
         console.log(res);
         refresh();
       });
