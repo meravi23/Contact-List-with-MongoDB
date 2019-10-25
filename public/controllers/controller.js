@@ -12,7 +12,6 @@ var app = angular.module("app", []).controller('AppCtrl',
         $scope.contact = null;
       });
     };
-
     refresh();
 
     $scope.addContact = function () {
